@@ -3,11 +3,10 @@ const pool = require("./db");
 const cors = require("cors");
 const shortid = require("shortid");
 const app = express();
-
+const port = process.env.port || 5000;
 app.use(express.json());
 app.use(cors());
-
-app.get("/urls", async (req, res) => {
+app.get("/api/urls", async (req, res) => {
   try {
     const q = await pool.query("SELECT * FROM shortenedurls");
 
@@ -18,7 +17,7 @@ app.get("/urls", async (req, res) => {
   }
 });
 
-app.post("/new/url", async (req, res) => {
+app.post("/api/new/url", async (req, res) => {
   try {
     const { url } = req.body;
     const shortened = shortid.generate();
@@ -55,6 +54,6 @@ app.get("/:shortened", async (req, res) => {
     res.status(500).send("Something went wrong");
   }
 });
-app.listen(5000, () => {
-  console.log("server is running on 5000");
+app.listen(port, () => {
+  console.log(`server is running on ${port}`);
 });

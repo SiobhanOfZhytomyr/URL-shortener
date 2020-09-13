@@ -33,7 +33,7 @@ const UrlForm = ({ apiCall }) => {
       >
         {({ values, handleChange, handleSubmit, isSubmitting, errors }) => (
           <Form onSubmit={handleSubmit}>
-            <Form.Group inline="true">
+            <Form.Group inline={true}>
               <Form.Input
                 name="urlData"
                 placeholder="Type in url you want to be shortened"
