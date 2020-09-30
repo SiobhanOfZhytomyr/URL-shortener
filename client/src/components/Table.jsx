@@ -2,14 +2,6 @@ import React from "react";
 import { Table } from "semantic-ui-react";
 
 const DataTable = ({ loading, data }) => {
-  const handleAClick = async (e, shortened) => {
-    e.preventDefault();
-    try {
-      const res = await fetch(`/${shortened}`);
-    } catch (e) {
-      console.log(e);
-    }
-  };
   return (
     <Table celled compact="very">
       <Table.Header>
@@ -31,8 +23,9 @@ const DataTable = ({ loading, data }) => {
                 <a href={item.original_url}>{item.original_url}</a>
               </Table.Cell>
               <Table.Cell width={3}>
-                {/* Looks ugly but proxiyng does not quite work with an a tag */}
-                <a href='#' onClick={e => handleAClick(e, item.shortened_url)}>{item.shortened_url}</a>
+                <a href={`http://localhost:5000/${item.shortened_url}`}>
+                  {item.shortened_url}
+                </a>
               </Table.Cell>
               <Table.Cell width={2}>{item.times_used} times</Table.Cell>
             </Table.Row>

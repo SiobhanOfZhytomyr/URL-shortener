@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import "./App.css";
 import "semantic-ui-css/semantic.min.css";
 import { Container } from "semantic-ui-react";
 import { UrlForm } from "./components/Form";
@@ -16,7 +17,6 @@ function App() {
       },
       body: JSON.stringify(val),
     });
-    console.log(res);
 
     // setInputVal("");
     window.location = "/";
@@ -28,7 +28,6 @@ function App() {
       const r = await res.json();
       setData(r);
       setLoading(false);
-      console.log(r);
     };
 
     getData();
